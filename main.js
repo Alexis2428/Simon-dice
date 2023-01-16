@@ -1,3 +1,17 @@
+let ronda;
+let secuenciaMaquina;
+let secuenciaUsuario;
+
+actualizarEstado(`Presione "Iniciar" para empezar el juego.`);
+
+document.querySelector('button[type = button]').onclick = comenzarJuego;
+
+function comenzarJuego() {
+    actualizarEstadoBoton(false);
+    iniciarEstadoJuego();
+    manejarRonda();
+}
+
 function actualizarEstado(estado, juegoPerdido = false) {
     const $estado = document.querySelector('#estado');
     $estado.textContent = estado;
@@ -25,6 +39,11 @@ function actualizarEstadoBoton(habilitar) {
     }
 }
 
+function iniciarEstadoJuego() {
+    ronda = 0;
+    secuenciaMaquina = [];
+}
+
 function manejarRonda() {
     ronda++;
     actualizarNumeroRonda(ronda);
@@ -49,6 +68,10 @@ function manejarRonda() {
         actualizarEstado('Turno del jugador.');
         desbloquearInputUsuario();
     }, RETRASO_TURNO_JUGADOR);
+}
+
+function actualizarNumeroRonda(numero) {
+    document.querySelector('#ronda').textContent = numero;
 }
 
 function obtenerCuadradoAleatorio() {
@@ -94,3 +117,8 @@ function manejarInputUsuario(event) {
     }
 }
 
+function perder() {
+    bloquearInputUsuario();
+    actualizarEstado('Perdiste! Presione "Iniciar" para volver a jugar.', true);
+    actualizarEstadoBoton(true);
+}
