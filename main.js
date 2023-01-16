@@ -25,6 +25,32 @@ function actualizarEstadoBoton(habilitar) {
     }
 }
 
+function manejarRonda() {
+    ronda++;
+    actualizarNumeroRonda(ronda);
+    secuenciaUsuario = [];
+
+    actualizarEstado('Turno de la maquina.');
+    bloquearInputUsuario();
+
+    const $nuevoCuadrado = obtenerCuadradoAleatorio();
+    secuenciaMaquina.push($nuevoCuadrado);
+
+    const RETRASO_TURNO_JUGADOR = (secuenciaMaquina.length + 1) * 1000; // milisegundos antes del turno del jugador
+
+    secuenciaMaquina.forEach(function($cuadrado, indice) {
+        const RETRASO_MS = (indice + 1) * 1000;
+        setTimeout(function() {
+            resaltarCuadrado($cuadrado);
+        }, RETRASO_MS);
+    });
+
+    setTimeout(function() {
+        actualizarEstado('Turno del jugador.');
+        desbloquearInputUsuario();
+    }, RETRASO_TURNO_JUGADOR);
+}
+
 function obtenerCuadradoAleatorio() {
     const $cuadrados = document.querySelectorAll('.cuadrado');
     const indiceAleatorio = Math.floor(Math.random() * $cuadrados.length);
