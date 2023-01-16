@@ -25,3 +25,16 @@ function actualizarEstadoBoton(habilitar) {
     }
 }
 
+function obtenerCuadradoAleatorio() {
+    const $cuadrados = document.querySelectorAll('.cuadrado');
+    const indiceAleatorio = Math.floor(Math.random() * $cuadrados.length);
+    return $cuadrados[indiceAleatorio];
+}
+
+function resaltarCuadrado($cuadrado) {
+    $cuadrado.style.opacity = 0.5;
+    setTimeout(function() {
+        $cuadrado.style.opacity = 1;
+    }, 500);
+}
+
