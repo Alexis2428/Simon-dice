@@ -1,0 +1,29 @@
+.cuadrado {
+    height: 200px;
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+#grilla {
+    background-color: black;
+}
+
+#cuadrado-1 {
+    background-color: yellow;
+}
+
+#cuadrado-2 {
+    background-color: blue;
+}
+
+#cuadrado-3 {
+    background-color: red;
+}
+
+#cuadrado-4 {
+    background-color: green;
+}
+
+.oculto {
+    display: none;
+}
