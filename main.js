@@ -38,3 +38,33 @@ function resaltarCuadrado($cuadrado) {
     }, 500);
 }
 
+function bloquearInputUsuario() {
+    document.querySelectorAll('.cuadrado').forEach(function($cuadrado) {
+        $cuadrado.onclick = function() {};
+    });
+}
+
+function desbloquearInputUsuario() {
+    document.querySelectorAll('.cuadrado').forEach(function($cuadrado) {
+        $cuadrado.onclick = manejarInputUsuario;
+    });
+}
+
+function manejarInputUsuario(event) {
+    const $cuadrado = event.target;
+    const $cuadradoMaquina = secuenciaMaquina[secuenciaUsuario.length];
+
+    if ($cuadrado.id !== $cuadradoMaquina.id) {
+        perder();
+        return
+    }
+    
+    secuenciaUsuario.push($cuadrado);
+    resaltarCuadrado($cuadrado);
+
+    if (secuenciaMaquina.length === secuenciaUsuario.length) {
+        bloquearInputUsuario();
+        setTimeout(manejarRonda, 1000);
+    }
+}
+
