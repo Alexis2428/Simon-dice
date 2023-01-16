@@ -1,0 +1,22 @@
+{
+  "name": "simon-dice",
+  "version": "1.0.0",
+  "description": "Juego Simon dice",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexis2428/Simon-dice.git"
+  },
+  "author": "Alexis Landa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexis2428/Simon-dice/issues"
+  },
+  "homepage": "https://github.com/Alexis2428/Simon-dice#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.3"
+  }
+}
