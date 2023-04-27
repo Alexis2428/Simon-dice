@@ -17,16 +17,13 @@
         </p>
     </div>
 
-    <div class="container">
+    <div id="barra-estado" class="container">
         <div class="row">
-            <div class="col-sm text-center">
-                <div class="alert alert-primary" role="alert" id="estado"></div>
+            <div class="col text-center">
+                <div class="alert" role="alert" id="estado"></div>
             </div>
-            <div class="col-sm-1 text-center">
-                <p>Ronda # <strong id="ronda"></strong></p>
-            </div>
-            <div class="col-sm-2">
-                <button type="button" class="btn btn-outline-primary rounded-4" id="iniciar">Iniciar</button>
+            <div class="col-2 text-center">
+                <p class="alert" role="alert">Ronda # <strong id="ronda"></strong></p>
             </div>
         </div>
     </div>
@@ -41,6 +38,7 @@
             </div>
             <div class="col mb-2">
                 <div class="cuadrado rounded-5" id="cuadrado-3"></div>
+    <button id="iniciar" type="button" class="btn btn-outline-primary d-grid col-2 mx-auto mb-3 rounded-4">Iniciar</button>
             </div>
             <div class="col mb-2">
                 <div class="cuadrado rounded-5" id="cuadrado-4"></div>
