@@ -121,4 +121,11 @@ function perder() {
     bloquearInputUsuario();
     actualizarEstado('Perdiste! Presione "Iniciar" para volver a jugar.', true);
     actualizarEstadoBoton(true);
+
+function ocultarElemento(elemento) {
+    document.querySelector(`#${elemento}`).classList.add('oculto');
+}
+
+function mostrarElemento(elemento) {
+    document.querySelector(`#${elemento}`).classList.remove('oculto');
 }
