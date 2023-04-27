@@ -28,20 +28,25 @@
         </div>
     </div>
 
-    <div class="container" id="grilla">
-        <div class="row row-cols-2 rounded g-2">
-            <div class="col">
-                <div class="cuadrado rounded-5" id="cuadrado-1"></div>
-            </div>
-            <div class="col">
-                <div class="cuadrado rounded-5" id="cuadrado-2"></div>
-            </div>
-            <div class="col mb-2">
-                <div class="cuadrado rounded-5" id="cuadrado-3"></div>
     <button id="iniciar" type="button" class="btn btn-outline-primary d-grid col-2 mx-auto mb-3 rounded-4">Iniciar</button>
+
+    <div id="tablero" class="oculto">
+        <div class="container-fluid">
+            <div class="row g-2 fila">
+                <div class="col mb-2">
+                    <div id="cuadro-amarillo" class="cuadro rounded-5 h-100"></div>
+                </div>
+                <div class="col mb-2">
+                    <div id="cuadro-azul" class="cuadro rounded-5 h-100"></div>
+                </div>
             </div>
-            <div class="col mb-2">
-                <div class="cuadrado rounded-5" id="cuadrado-4"></div>
+            <div class="row g-2 fila">
+                <div class="col mb-2">
+                    <div id="cuadro-rojo" class="cuadro rounded-5 h-100"></div>
+                </div>
+                <div class="col mb-2">
+                    <div id="cuadro-verde" class="cuadro rounded-5 h-100"></div>
+                </div>
             </div>
         </div>
     </div>
