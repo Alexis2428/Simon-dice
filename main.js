@@ -1,3 +1,6 @@
+const $barraEstado = document.querySelector('#barra-estado');
+const $tablero = document.querySelector('#tablero');
+
 let ronda;
 let secuenciaMaquina;
 let secuenciaUsuario;
