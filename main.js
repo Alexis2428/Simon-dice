@@ -7,38 +7,38 @@ let secuenciaUsuario;
 
 actualizarEstado(`Presione "Iniciar" para empezar el juego.`);
 
-document.querySelector('button[type = button]').onclick = comenzarJuego;
+document.querySelector('#iniciar').onclick = iniciarJuego;
+function iniciarJuego() {
+    alternarEstadoBoton('habilitado');
 
-function comenzarJuego() {
-    actualizarEstadoBoton(false);
     iniciarEstadoJuego();
     manejarRonda();
 }
 
 function actualizarEstado(estado, juegoPerdido = false) {
-    const $estado = document.querySelector('#estado');
+    const $estado = $barraEstado.querySelector('#estado');
     $estado.textContent = estado;
 
     if (juegoPerdido) {
         $estado.classList.remove('alert-primary');
         $estado.classList.add('alert-danger');
+
     } else {
         $estado.classList.remove('alert-danger');
         $estado.classList.add('alert-primary');
     }
 }
 
-function actualizarEstadoBoton(habilitar) {
+function alternarEstadoBoton(estado) {      // recibe como parametro el estado actual del boton
     const $boton = document.querySelector('#iniciar');
 
-    if (habilitar) {
-        $boton.classList.remove('btn-outline-secondary');
+    if (estado === 'deshabilitado') {
+        $boton.classList.remove('btn-outline-secondary', 'disabled');
         $boton.classList.add('btn-outline-primary');
-        $boton.classList.remove('disabled');
+
     } else {
         $boton.classList.remove('btn-outline-primary');
-        $boton.classList.add('btn-outline-secondary');
-        $boton.classList.add('disabled');
+        $boton.classList.add('btn-outline-secondary', 'disabled');
     }
 }
 
@@ -50,20 +50,21 @@ function iniciarEstadoJuego() {
 function manejarRonda() {
     ronda++;
     actualizarNumeroRonda(ronda);
+
     secuenciaUsuario = [];
 
     actualizarEstado('Turno de la maquina.');
     bloquearInputUsuario();
 
-    const $nuevoCuadrado = obtenerCuadradoAleatorio();
-    secuenciaMaquina.push($nuevoCuadrado);
+    const $nuevoCuadro = obtenerCuadroAleatorio();
+    secuenciaMaquina.push($nuevoCuadro);
 
     const RETRASO_TURNO_JUGADOR = (secuenciaMaquina.length + 1) * 1000; // milisegundos antes del turno del jugador
 
-    secuenciaMaquina.forEach(function($cuadrado, indice) {
+    secuenciaMaquina.forEach(function($cuadro, indice) {
         const RETRASO_MS = (indice + 1) * 1000;
         setTimeout(function() {
-            resaltarCuadrado($cuadrado);
+            resaltarCuadro($cuadro);
         }, RETRASO_MS);
     });
 
@@ -74,19 +75,19 @@ function manejarRonda() {
 }
 
 function actualizarNumeroRonda(numero) {
-    document.querySelector('#ronda').textContent = numero;
+    $barraEstado.querySelector('#ronda').textContent = numero.toString();
 }
 
-function obtenerCuadradoAleatorio() {
-    const $cuadrados = document.querySelectorAll('.cuadrado');
-    const indiceAleatorio = Math.floor(Math.random() * $cuadrados.length);
-    return $cuadrados[indiceAleatorio];
+function obtenerCuadroAleatorio() {
+    const $cuadros = $tablero.querySelectorAll('.cuadro');
+    const indiceAleatorio = Math.floor(Math.random() * $cuadros.length);
+    return $cuadros[indiceAleatorio];
 }
 
-function resaltarCuadrado($cuadrado) {
-    $cuadrado.style.opacity = 0.5;
+function resaltarCuadro($cuadro) {
+    $cuadro.style.opacity = 0.5;
     setTimeout(function() {
-        $cuadrado.style.opacity = 1;
+        $cuadro.style.opacity = 1;
     }, 500);
 }
 
@@ -111,8 +112,8 @@ function manejarInputUsuario(event) {
         return
     }
     
-    secuenciaUsuario.push($cuadrado);
-    resaltarCuadrado($cuadrado);
+    secuenciaUsuario.push($cuadro);
+    resaltarCuadro($cuadro);
 
     if (secuenciaMaquina.length === secuenciaUsuario.length) {
         bloquearInputUsuario();
@@ -123,7 +124,7 @@ function manejarInputUsuario(event) {
 function perder() {
     bloquearInputUsuario();
     actualizarEstado('Perdiste! Presione "Iniciar" para volver a jugar.', true);
-    actualizarEstadoBoton(true);
+    alternarEstadoBoton('deshabilitado');
 
 function ocultarElemento(elemento) {
     document.querySelector(`#${elemento}`).classList.add('oculto');
