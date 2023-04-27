@@ -8,8 +8,11 @@ let secuenciaUsuario;
 actualizarEstado(`Presione "Iniciar" para empezar el juego.`);
 
 document.querySelector('#iniciar').onclick = iniciarJuego;
+
 function iniciarJuego() {
+    ocultarElemento('titulo');
     alternarEstadoBoton('habilitado');
+    mostrarElemento('tablero');
 
     iniciarEstadoJuego();
     manejarRonda();
@@ -123,9 +126,12 @@ function manejarInputUsuario($cuadro) {
 }
 
 function perder() {
-    bloquearInputUsuario();
     actualizarEstado('Perdiste! Presione "Iniciar" para volver a jugar.', true);
     alternarEstadoBoton('deshabilitado');
+    
+    ocultarElemento('tablero');
+    mostrarElemento('titulo');
+}
 
 function ocultarElemento(elemento) {
     document.querySelector(`#${elemento}`).classList.add('oculto');
