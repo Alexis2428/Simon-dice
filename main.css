@@ -1,26 +1,27 @@
-.cuadrado {
-    height: 200px;
-    opacity: 1;
-    transition: opacity 500ms;
 }
 
-#grilla {
+#tablero {
     background-color: black;
 }
 
-#cuadrado-1 {
+.cuadro {
+    opacity: 1;
+    transition: opacity ease 500ms;
+}
+
+#cuadro-amarillo {
     background-color: yellow;
 }
 
-#cuadrado-2 {
+#cuadro-azul {
     background-color: blue;
 }
 
-#cuadrado-3 {
+#cuadro-rojo {
     background-color: red;
 }
 
-#cuadrado-4 {
+#cuadro-verde {
     background-color: green;
 }
 
