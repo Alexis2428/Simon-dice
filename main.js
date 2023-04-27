@@ -92,22 +92,23 @@ function resaltarCuadro($cuadro) {
 }
 
 function bloquearInputUsuario() {
-    document.querySelectorAll('.cuadrado').forEach(function($cuadrado) {
-        $cuadrado.onclick = function() {};
-    });
+    $tablero.onclick = function() {};
 }
 
 function desbloquearInputUsuario() {
-    document.querySelectorAll('.cuadrado').forEach(function($cuadrado) {
-        $cuadrado.onclick = manejarInputUsuario;
-    });
+    $tablero.onclick = function(event) {
+        const $elemento = event.target;
+
+        if ($elemento.classList.contains('cuadro')) {
+            manejarInputUsuario($elemento);
+        }
+    }
 }
 
-function manejarInputUsuario(event) {
-    const $cuadrado = event.target;
-    const $cuadradoMaquina = secuenciaMaquina[secuenciaUsuario.length];
+function manejarInputUsuario($cuadro) {
+    const $cuadroMaquina = secuenciaMaquina[secuenciaUsuario.length];
 
-    if ($cuadrado.id !== $cuadradoMaquina.id) {
+    if ($cuadro.id !== $cuadroMaquina.id) {
         perder();
         return
     }
