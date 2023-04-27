@@ -1,12 +1,19 @@
+body {
+    background-color: white;
 }
 
 #tablero {
     background-color: black;
 }
 
+.fila {
+    height: 42vh;
+}
+
 .cuadro {
     opacity: 1;
     transition: opacity ease 500ms;
+    cursor: pointer;
 }
 
 #cuadro-amarillo {
